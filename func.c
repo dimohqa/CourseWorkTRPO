@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "void_print.h"
+#include "func.h"
 	//7 easy 5 hard
 	void print_hang (int err, int step) //виселица
 	{		
@@ -31,4 +30,20 @@
 				//case 1: printf("  ____    (A)\n ||/      (A)\n ||       (A)\n ||       (A)\n_||_      (A)  "); break;      
             }
 		}
+}
+
+int level(int lev) {
+    int err;
+    if (lev == 1) {
+        err = 7;
+        return err;
+    }
+    if (lev == 2) {
+        err = 5;
+        return err;
+    }
+    if (lev != 1 && lev != 2) {
+        printf("Incorrect level!\nEnter level:");
+    }
+    return 0;
 }
