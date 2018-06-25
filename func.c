@@ -31,3 +31,19 @@ void print_hang (int err, int step) //виселица
           }
      }
 }
+
+int level(int lev) {
+    int err;
+    if (lev == 1) {
+        err = 7;
+        return err;
+    }
+    if (lev == 2) {
+        err = 5;
+        return err;
+    }
+    if (lev != 1 && lev != 2) {
+        printf("Incorrect level!\nEnter level:");
+    }
+    return 0;
+}
