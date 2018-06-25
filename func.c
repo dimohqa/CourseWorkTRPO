@@ -95,3 +95,16 @@ void print_mmr(char *nick)
     }
     fclose(pf);
 }
+
+void randomize(FILE *fp, char *word, char *help) {
+    srand(time(NULL));
+    int rnd, f = 0;
+    while (fscanf(fp, "%s" "%s", word , help) != EOF ) {
+        f++;
+    }
+    rnd = rand() % f;
+    fseek(fp, 0, SEEK_SET);
+    for (int i = 0;i < rnd; i++) {
+        fscanf(fp, "%s" "%s", word, help);
+    }
+}

@@ -8,10 +8,12 @@
 
 void print_mmr(char *nick);
 
+void randomize(FILE *fp, char *word, char *help);
+
 int level(int lev);
 
 void encryption(char word[], char enc_word[]);
 
-void print_hang (int err, int step);
+void print_hang(int err, int step);
 
 #endif

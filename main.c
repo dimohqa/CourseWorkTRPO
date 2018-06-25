@@ -17,7 +17,6 @@ int main() {
     }
     print_hang(7, 7);
     print_mmr(nick);
-    //fclose(fp);
     fclose(fp);
     printf("\n");
     return 0;
