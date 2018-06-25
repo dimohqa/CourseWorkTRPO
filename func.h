@@ -1,4 +1,10 @@
-#ifndef FUN
+#ifndef FUN_H
+#define FUN_H
+
 #include <stdio.h>
+
 void print_hang (int err, int step);
-#enddif
+
+int level(int lev);
+
+#endif
