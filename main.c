@@ -10,6 +10,7 @@ int main() {
         scanf("%d", &lev);
         err = level(lev);
     }
+    print_hang(7, 7);
     //fclose(fp);
     return 0;
 }
