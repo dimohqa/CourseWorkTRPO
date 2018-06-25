@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "void_print.h"
+#include <string.h>
 //7 easy 5 hard
 void print_hang (int err, int step) //виселица
 {
@@ -46,4 +46,12 @@ int level(int lev) {
         printf("Incorrect level!\nEnter level:");
     }
     return 0;
+}
+
+void encryption(char word[], char enc_word[]) {
+    int length = strlen(word);
+    for (int i = 0; i < length; i++) {
+        enc_word[i] = '*';
+        enc_word[length] = '\0';
+    }
 }
