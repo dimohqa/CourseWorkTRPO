@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "void_print.h"
+#include "func.h"
 //7 easy 5 hard
 void print_hang (int err, int step) //виселица
 {
