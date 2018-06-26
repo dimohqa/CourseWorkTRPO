@@ -20,7 +20,7 @@ void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
     char p5[8] = "     ";
     char p6[8] = "      ";
     char p7[8] = "       ";
-    for(int i = 0; i<=size; i++){
+    for(int i = 0; i<size; i++){
         len = strlen(arr[i].name);
         if (len == 8) fprintf(pf, "%d|%s|%d|%d\n", arr[i].num, arr[i].name, arr[i].win, arr[i].lose);
         else
@@ -173,6 +173,9 @@ void nousl (int size, users *mmr, char *nick) {//добавляет имя в к
 
 
 int rating (char *nick, char sim_w_l) {
+    if (strlen(nick)>8) {
+        return -1;
+    }
     users mmr[20];
     users tmp;
     int ind = 0;
@@ -229,4 +232,5 @@ int rating (char *nick, char sim_w_l) {
         system("clear");
         printf("Ничего страшного, посмотрите в следующий раз ;-)\n");
     }
+    return 0;
 }
