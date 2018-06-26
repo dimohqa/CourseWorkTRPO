@@ -20,10 +20,7 @@ void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
     char p5[8] = "     ";
     char p6[8] = "      ";
     char p7[8] = "       ";
-    if (prow(nick, arr)== -1) {
-        size = size+1; 
-    }
-    for(int i = 0; i<size; i++){
+    for(int i = 0; i<=size; i++){
         len = strlen(arr[i].name);
         if (len == 8) fprintf(pf, "%d|%s|%d|%d\n", arr[i].num, arr[i].name, arr[i].win, arr[i].lose);
         else
@@ -197,9 +194,11 @@ int rating (char *nick, char sim_w_l) {
     }else {
         if (sim_w_l=='L'){
             nousl(size, mmr, nick);
+            size++;
         }
         if (sim_w_l=='W'){
             nousw(size, mmr, nick);
+            size++;
         }
     }
     
@@ -219,14 +218,13 @@ int rating (char *nick, char sim_w_l) {
     in_f(mmr, pfin, size, nick);
     fclose(pfin);
     char menu;
-    //system("clear");
-    printf("Желаете вывести статистику?\n");
-    printf("y/n\n");
+    system("clear");
+    printf("Желаете вывести статистику?\n"
+           "y/n\n");
     scanf("%c",&menu);
     if (menu == 'y') {
         out(size, nick);
-    }
-    if (menu == 'n'){
+    }else{
         system("clear");
         printf("Ничего страшного, посмотрите в следующий раз ;-)\n");
     }
