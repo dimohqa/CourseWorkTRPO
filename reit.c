@@ -222,7 +222,8 @@ int rating (char *nick, char sim_w_l) {
     //system("clear");
     printf("Желаете вывести статистику?\n");
     printf("y/n\n");
-    scanf("%c",&menu);
+    getchar();
+    menu = getchar();
     if (menu == 'y') {
         out(size, nick);
     }

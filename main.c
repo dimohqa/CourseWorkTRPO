@@ -29,7 +29,7 @@ int main() {
     int flag = 0;
     int point = 1;
     int index = -1;
-    int flag2 = 0;
+    int is = 0;
     while (RError <= err) {
         if (point == 1) {
             step++;
@@ -40,14 +40,14 @@ int main() {
         if (RError == err) {
             printf("\nК сожалению вы проиграли!!!\n");
             printf("Загаданное слово: %s\n", word);
-            rating(nick, 'L');
-            //return 0;
+            is = 0;
+            break;
         }
-        if (flag = proverka(word, enc_word) == 0) {
+        if ((flag = proverka(word, enc_word)) == 0) {
             printf("\nПоздравляем!Вы победили!!!\n");
             printf("Загаданное слово: %s\n", word);
-            rating(nick, 'W');
-            //return 0;
+            is = 1;
+            break;
         }
         print_secret(enc_word);
         
@@ -60,13 +60,13 @@ int main() {
         getchar();
         symbol = getchar();
         
-        if (flag = correct_symbol(symbol) == -1) {
+        if ((flag = correct_symbol(symbol)) == -1) {
             point = 0;
             //printf("\nВы ввели неккоректную букву!Попробуйте снова!(enter)\n");
             //getchar();
             continue;
         } else {
-            if (flag = check_symbol(symbol, check, index) == -1) {
+            if ((flag = check_symbol(symbol, check, index)) == -1) {
                 point = 0;
                 //printf("\nЭта буква уже была!Попробуйте снова!(enter)\n");
                 //getchar();
@@ -75,10 +75,15 @@ int main() {
         }
         symbol = reg(symbol);
         flag = 1;
-        if (flag = compare_s(symbol, word, enc_word) == -1) {
+        if ((flag = compare_s(symbol, word, enc_word)) == -1) {
             printf("\nТакой буквы нет!");
             RError++;
         }
+    }
+    if (is == 0) {
+        rating(nick, 'L');
+    } else {
+        rating(nick, 'W');
     }
     return 0;
 }
