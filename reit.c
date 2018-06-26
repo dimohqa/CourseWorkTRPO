@@ -1,13 +1,5 @@
 #include "reithed.h"
 
-typedef struct{
-    int num;
-    char name[10];
-    int win;
-    int lose;
-    float n;
-} users;
-
 int prow (char *nick, users *arr) {//проверка есть ник или нет если есть то записать в него статистику проиграл или выйграл если нет записать ник в конец списка ..победы и пор = 0 а в конце записать стату
     int res = 1;
     for (int i = 0; i<=20; i++){
@@ -227,13 +219,14 @@ int rating (char *nick, char sim_w_l) {
     in_f(mmr, pfin, size, nick);
     fclose(pfin);
     char menu;
-    system("clear");
-    printf("Желаете вывести статистику?\n"
-           "y/n\n");
+    //system("clear");
+    printf("Желаете вывести статистику?\n");
+    printf("y/n\n");
     scanf("%c",&menu);
     if (menu == 'y') {
         out(size, nick);
-    }else{
+    }
+    if (menu == 'n'){
         system("clear");
         printf("Ничего страшного, посмотрите в следующий раз ;-)\n");
     }

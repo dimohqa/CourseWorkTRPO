@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "func.h"
+#include "reithed.h"
 
 int main() {
     char word[20], enc_word[20], help[100];
-    char nick[20]= {"SoNy"};
+    char nick[9];
     char check[20];
     int err = 0, lev = 0;
     int symbol;
@@ -13,6 +14,8 @@ int main() {
         printf("Error read file");
         return 1;
     }
+    printf("Enter your name(1-8simv): ");
+    scanf("%s", &nick);
     printf("Enter level:");
     while (err == 0) {
         scanf("%d", &lev);
@@ -37,12 +40,14 @@ int main() {
         if (RError == err) {
             printf("\nК сожалению вы проиграли!!!\n");
             printf("Загаданное слово: %s\n", word);
-            return 0;
+            rating(nick, 'L');
+            //return 0;
         }
         if (flag = proverka(word, enc_word) == 0) {
             printf("\nПоздравляем!Вы победили!!!\n");
             printf("Загаданное слово: %s\n", word);
-            return 0;
+            rating(nick, 'W');
+            //return 0;
         }
         print_secret(enc_word);
         
