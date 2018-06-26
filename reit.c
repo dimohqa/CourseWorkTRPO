@@ -218,10 +218,11 @@ int rating (char *nick, char sim_w_l) {
     in_f(mmr, pfin, size, nick);
     fclose(pfin);
     char menu;
-    system("clear");
-    printf("Желаете вывести статистику?\n"
-           "y/n\n");
-    scanf("%c",&menu);
+    //system("clear");
+    printf("Желаете вывести статистику?\n");
+    printf("y/n\n");
+    getchar();
+    menu = getchar();
     if (menu == 'y') {
         out(size, nick);
     }else{
