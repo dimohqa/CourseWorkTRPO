@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 #include "func.h"
 //7 easy 5 hard
 void print_hang (int err, int step) //виселица
@@ -7,13 +9,13 @@ void print_hang (int err, int step) //виселица
      if (err == 7) {
           switch (step)
           {
-               case 7: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ / \\  (A)  "); break;
-               case 6: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ /    (A)  "); break;
-               case 5: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_      (A)  "); break;
-               case 4: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|   (A)\n_||_      (A)  "); break;
-               case 3: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||   |   (A)\n_||_      (A)  "); break;
-               case 2: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||       (A)\n_||_      (A)  "); break;
-               case 1: printf("  ____    (A)\n ||/      (A)\n ||       (A)\n ||       (A)\n_||_      (A)  "); break;
+               case 6: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ / \\  (A)  "); break;
+               case 5: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ /    (A)  "); break;
+               case 4: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_      (A)  "); break;
+               case 3: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|   (A)\n_||_      (A)  "); break;
+               case 2: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||   |   (A)\n_||_      (A)  "); break;
+               case 1: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||       (A)\n_||_      (A)  "); break;
+               case 0: printf("  ____    (A)\n ||/      (A)\n ||       (A)\n ||       (A)\n_||_      (A)  "); break;
                //case 1: printf("          (A)\n ||       (A)\n ||       (A)\n ||       (A)\n_||_      (A)  "); break;
                //case 1: printf("         (A)\n          (A)\n         (A)\n         (A)\n___      (A)  "); break;
                //case 0: printf("         (A)\n         (A)\n         (A)\n         (A)\n         (A)  "); break;
@@ -22,11 +24,11 @@ void print_hang (int err, int step) //виселица
      if (err == 5) {
           switch (step)
           {
-               case 5: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ / \\  (A)  "); break;
-               case 4: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ /    (A)  "); break;
-               case 3: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_      (A)  "); break;
-               case 2: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|   (A)\n_||_      (A)  "); break;
-               case 1: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||   |   (A)\n_||_      (A)  "); break;
+               case 4: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ / \\  (A)  "); break;
+               case 3: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_ /    (A)  "); break;
+               case 2: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|\\  (A)\n_||_      (A)  "); break;
+               case 1: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||  /|   (A)\n_||_      (A)  "); break;
+               case 0: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||   |   (A)\n_||_      (A)  "); break;
                //case 2: printf("  ____    (A)\n ||/  |   (A)\n ||   o   (A)\n ||       (A)\n_||_      (A)  "); break;
                //case 1: printf("  ____    (A)\n ||/      (A)\n ||       (A)\n ||       (A)\n_||_      (A)  "); break;      
           }
@@ -107,4 +109,67 @@ void randomize(FILE *fp, char *word, char *help) {
     for (int i = 0;i < rnd; i++) {
         fscanf(fp, "%s" "%s", word, help);
     }
+}
+
+int compare_s(char symbol, char word[], char enc_word[]) {
+    int len = strlen(word);
+    int flag = -1;
+    for (int i = 0; i < len; i++) {
+        if (word[i] == symbol) {
+            enc_word[i] = word[i];
+            flag = 0;
+        }
+    }
+    return flag;
+}
+
+void print_secret(char enc_word[]) {
+    int len = strlen(enc_word);
+    printf("\nСекретное слово: ");
+    for (int i = 0; i < len; i++) {
+        printf("%c  ", enc_word[i]);
+    }
+    printf("\n");
+}
+
+int check_symbol(char symbol, char check[], int index) {
+    int flag = 0;
+    int k = strlen(check);
+    for (int i = 0; i < strlen(check); i++) {
+        if (symbol == check[i]) {
+            flag = -1;
+        }
+    }
+    if (flag == 0) {
+        check[k] = symbol;
+    }
+    return flag;
+}
+
+int correct_symbol(char symbol) {
+    int flag = 0;
+    if ( (int)symbol < 65 || ( (int)symbol > 90 && (int)symbol < 97 ) || (int)symbol > 122 ) {
+        flag = -1;
+    }
+    return flag;
+}
+
+char reg(char symbol) {
+    if ( (int)symbol >= 65 && (int)symbol <= 90 ) {
+        symbol = (char)((int)symbol + 32);
+    }
+    return symbol;
+}
+
+int proverka(char word[], char enc_word[]) {
+    int flag = 0;
+    for (int i = 0; i < strlen(word); i++) {
+        if (word[i] == enc_word[i]) {
+            flag++;
+        }
+    }
+    if (flag == strlen(word)) {
+        return 0;
+    }
+    return -1;
 }
