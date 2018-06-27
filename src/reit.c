@@ -174,6 +174,7 @@ void nousl (int size, users *mmr, char *nick) {//добавляет имя в к
 
 int rating (char *nick, char sim_w_l) {
     if (strlen(nick)>8) {
+        printf("Nickname > 8!!!");
         return -1;
     }
     users mmr[20];
