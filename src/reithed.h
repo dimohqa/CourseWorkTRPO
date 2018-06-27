@@ -15,7 +15,6 @@ typedef struct{
     float n;
 } users;
 
-int addstr(FILE *pf,users *var);
 void in_f(users *arr, FILE *pf, int size, char *nick);
 void nousl (int size, users *mmr, char *nick);
 void nousw (int size, users *mmr, char *nick);
