@@ -14,9 +14,14 @@ int main() {
         printf("Error read file");
         return 1;
     }
-    printf("Enter your name(1-8simv): ");
+    printf("Введите ваше имя(1-8 символов): ");
     scanf("%s", nick);
-    printf("Enter level!(1 - easy(8 err), 2 - hard(5 err): ");
+    while (rating(nick, 'L') == -1) {
+        printf("\nНик должен быть не более 8 символов, попробуйте еще раз:");
+        scanf("%s", nick);
+    }
+
+    printf("Enter level(1 - easy(8 err), 2 - hard(5 err): ");
     while (err == 0) {
         scanf("%d", &lev);
         err = level(lev);
@@ -51,8 +56,8 @@ int main() {
             printf("%c ,", check[i]);
         }
 
+        printf("\nПодсказка: %s", help);
         printf("\nВведите букву: ");
-        getchar();
         symbol = getchar();
 
         if ((flag = correct_symbol(symbol)) == -1) {
