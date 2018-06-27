@@ -1,8 +1,9 @@
 #include "reithed.h"
 
 int prow (char *nick, users *arr) {//проверка есть ник или нет если есть то записать в него статистику проиграл или выйграл если нет записать ник в конец списка ..победы и пор = 0 а в конце записать стату
+    int i = 0;
     int res = 1;
-    for (int i = 0; i<=20; i++){
+    for (i = 0; i<=20; i++){
         res = strncmp(nick, arr[i].name, 10);
         if (res == 0){
             return (arr[i].num-1);
@@ -13,6 +14,7 @@ int prow (char *nick, users *arr) {//проверка есть ник или н�
 
 void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
     int len = 0;
+    int i = 0;
     char p1[8] = " ";
     char p2[8] = "  ";
     char p3[8] = "   ";
@@ -20,7 +22,7 @@ void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
     char p5[8] = "     ";
     char p6[8] = "      ";
     char p7[8] = "       ";
-    for(int i = 0; i<size; i++){
+    for(i = 0; i<size; i++){
         len = strlen(arr[i].name);
         if (len == 8) fprintf(pf, "%d|%s|%d|%d\n", arr[i].num, arr[i].name, arr[i].win, arr[i].lose);
         else
@@ -45,6 +47,7 @@ void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
 
 int addstr(FILE *pf,users *var){//запись в структуры
     int numi=0,wini=0,losei=0;
+    int i = 0;
     char str[21];
     char *num;
     char *namec;
@@ -52,7 +55,7 @@ int addstr(FILE *pf,users *var){//запись в структуры
     char *win;
     char *lose;
     fgets(str, 20, pf);
-    for (int i =0; str[i] != '\0';i++) {
+    for (i =0; str[i] != '\0';i++) {
         if (str[i] =='\n'){
             str[i] = '\0';
         }
@@ -81,7 +84,7 @@ int addstr(FILE *pf,users *var){//запись в структуры
     var->lose=losei;
     var->n = (float)wini/(wini+losei);
     strncpy(namearr, namec, 10);
-    for (int i = 0; namearr[i] != '\0';i++) {
+    for (i = 0; namearr[i] != '\0';i++) {
         if (namearr[i] == ' ') {
             namearr[i] = '\0';
         }
@@ -93,6 +96,7 @@ int addstr(FILE *pf,users *var){//запись в структуры
 void out(int size, char *nick){//вывод на экран
     system("clear");
     users mmr[20];
+    int i = 0;
     int len = 0;
     char p1[8] = " ";
     char p2[8] = "  ";
@@ -103,11 +107,11 @@ void out(int size, char *nick){//вывод на экран
     char p7[8] = "       ";
     FILE *pf;
     pf = fopen("rating.txt", "r");
-    for (int i = 0; addstr(pf, &mmr[i])!= -1; i++) {
+    for (i = 0; addstr(pf, &mmr[i])!= -1; i++) {
         size = i+1;//скопирована база данных и ее размер;
     }
     printf("#|NICKNAME|W|L\n");
-    for (int i = 0; i<size; i++) {
+    for (i = 0; i<size; i++) {
         if (strncmp(nick, mmr[i].name, 10)==0){
             len = strlen(mmr[i].name);
             if (len == 8) printf("%s%d|%s|%d|%d%s\n", green, mmr[i].num, mmr[i].name, mmr[i].win, mmr[i].lose, RESET);
@@ -176,6 +180,8 @@ int rating (char *nick, char sim_w_l) {
     if (sim_w_l == 'F') {
         goto metka;//k -1;
     }
+    int i = 0;
+    int j = 0;
     users mmr[20];
     users tmp;
     int ind = 0;
@@ -185,7 +191,7 @@ int rating (char *nick, char sim_w_l) {
     if (pf==NULL) {
         return -1;
     }
-    for (int i = 0; addstr(pf, &mmr[i])!= -1; i++) {
+    for (i = 0; addstr(pf, &mmr[i])!= -1; i++) {
         size = i+1;//скопирована база данных и ее размер;
     }
     fclose(pf);
@@ -208,8 +214,8 @@ int rating (char *nick, char sim_w_l) {
         }
     }
     
-    for (int i = 0; i<size; i++) {//sort в конце затем вывод в файл
-        for (int j = 0; j<(size-i - 1); j++) {
+    for (i = 0; i<size; i++) {//sort в конце затем вывод в файл
+        for (j = 0; j<(size-i - 1); j++) {
             if(mmr[j].n<mmr[j+1].n) {
                 sw = mmr[j].num;
                 mmr[j].num = mmr[j+1].num;
@@ -227,7 +233,6 @@ int rating (char *nick, char sim_w_l) {
     in_f(mmr, pfin, size, nick);
     fclose(pfin);
     char menu;
-    //system("clear");
     printf("Желаете вывести статистику?\n");
     printf("y/n\n");
     getchar();

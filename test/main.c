@@ -141,10 +141,18 @@ CTEST(Returned_compare_s, retern_false) {
     ASSERT_EQUAL(exp, res);
 }
 
-CTEST(Reterned_check_symbol, retern_true) {
+CTEST(Reterned_check_symbol, retern_false) {
     char check[16] = {"abcdefs"};
     char sym = 's';
     const int exp = -1;
+    int res = check_symbol(sym, check);
+    ASSERT_EQUAL(exp, res);
+}
+
+CTEST(Reterned_check_symbol, retern_true) {
+    char check[16] = {"abcdef"};
+    char sym = 's';
+    const int exp = 0;
     int res = check_symbol(sym, check);
     ASSERT_EQUAL(exp, res);
 }
