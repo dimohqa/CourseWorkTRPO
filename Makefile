@@ -1,28 +1,28 @@
 CC = gcc
 CFLAGS = -Wall
 
-all: bin build build/src/ bin/exe
+all: bin build bin/exe
 
 test: ./bin/test
 	./bin/test
 
-bin/exe: build/src/reit.o build/src/main.o  build/src/func.o test
-	$(CC) $(CFLAGS) build/src/reit.o build/src/main.o build/src/func.o -o bin/exe
+bin/exe: build/reit.o build/main.o  build/func.o test
+	$(CC) $(CFLAGS) build/reit.o build/main.o build/func.o -o bin/exe
 
-build/src/main.o: src/main.c
-	$(CC) $(CFLAGS) -c src/main.c -o build/src/main.o 
+build/main.o: src/main.c
+	$(CC) $(CFLAGS) -c src/main.c -o build/main.o 
 
-build/src/reit.o: src/reit.c
-	$(CC) $(CFLAGS) -c src/reit.c -o build/src/reit.o 
+build/reit.o: src/reit.c
+	$(CC) $(CFLAGS) -c src/reit.c -o build/reit.o 
 
-build/src/func.o: src/func.c
-	$(CC) $(CFLAGS) -c src/func.c -o build/src/func.o
+build/func.o: src/func.c
+	$(CC) $(CFLAGS) -c src/func.c -o build/func.o
 
-bin/test: ./build/src/reit.o ./build/src/func.o ./build/src/main_test.o bin
-	$(CC) $(CFLAGS) ./build/src/main_test.o ./build/src/func.o ./build/src/reit.o -o bin/test
+bin/test: ./build/reit.o ./build/func.o ./build/main_test.o bin
+	$(CC) $(CFLAGS) ./build/main_test.o ./build/func.o ./build/reit.o -o bin/test
 
-./build/src/main_test.o: ./test/main.c ./thirdparty/ctest.h ./src/reithed.h ./src/func.h
-	$(CC) $(CFLAGS) -I thirdparty -I src -c ./test/main.c -o ./build/src/main_test.o
+./build/main_test.o: ./test/main.c ./thirdparty/ctest.h ./src/reithed.h ./src/func.h
+	$(CC) $(CFLAGS) -I thirdparty -I src -c ./test/main.c -o ./build/main_test.o
 
 bin:
 	mkdir bin
@@ -30,10 +30,6 @@ bin:
 build:
 	mkdir build
 
-build/src/:
-	mkdir build/src
-
 .PHONY: clean
 clean:
-	rm -rf build/src/*.o
-	rm -rf build/src
+	rm -rf build/*.o
