@@ -9,7 +9,7 @@ int prow (char *nick, users *arr) {//проверка есть ник или н�
         }
     }
     return -1; 
-}//если ника нет то записать ник в конец..если есть то изменить статистику ...вопрос как найти конец
+}//если ника нет то записать ник в конец
 
 void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
     int len = 0;
@@ -43,7 +43,7 @@ void in_f(users *arr, FILE *pf, int size, char *nick){//запись в файл
     }
 }
 
-int addstr(FILE *pf,users *var){//запись в структуры //сортировку по отношению побед к играм//запись обратно в файл
+int addstr(FILE *pf,users *var){//запись в структуры
     int numi=0,wini=0,losei=0;
     char str[21];
     char *num;
@@ -182,6 +182,9 @@ int rating (char *nick, char sim_w_l) {
     int size = 0;
     int sw = 0;
     FILE *pf = fopen("rating.txt", "r");
+    if (pf==NULL) {
+        return -1;
+    }
     for (int i = 0; addstr(pf, &mmr[i])!= -1; i++) {
         size = i+1;//скопирована база данных и ее размер;
     }
@@ -218,6 +221,9 @@ int rating (char *nick, char sim_w_l) {
         }
     }
     FILE *pfin = fopen("rating.txt", "w");
+    if (pfin==NULL) {
+        return -1;
+    }
     in_f(mmr, pfin, size, nick);
     fclose(pfin);
     char menu;
