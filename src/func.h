@@ -20,10 +20,12 @@ int compare_s(char symbol, char word[], char enc_word[]);
 
 void print_secret(char enc_word[]);
 
-int check_symbol(char symbol, char check[], int index);
+int check_symbol(char symbol, char check[]);
 
 int correct_symbol(char symbol);
 
 char reg(char symbol);
+
+int proverka(char word[], char enc_word[]);
 
 #endif

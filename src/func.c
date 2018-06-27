@@ -93,7 +93,7 @@ void print_secret(char enc_word[]) {
     printf("\n");
 }
 
-int check_symbol(char symbol, char check[], int index) {
+int check_symbol(char symbol, char check[]) {
     int flag = 0;
     int k = strlen(check);
     for (int i = 0; i < strlen(check); i++) {

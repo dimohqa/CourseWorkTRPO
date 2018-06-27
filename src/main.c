@@ -15,8 +15,8 @@ int main() {
         return 1;
     }
     printf("Enter your name(1-8simv): ");
-    scanf("%s", &nick);
-    printf("Enter level:");
+    scanf("%s", nick);
+    printf("Enter level!(1 - easy(8 err), 2 - hard(5 err): ");
     while (err == 0) {
         scanf("%d", &lev);
         err = level(lev);
@@ -24,12 +24,7 @@ int main() {
     randomize(fp, word, help);
     encryption(word, enc_word);
     fclose(fp);
-    int RError = 0;
-    int step = 0;
-    int flag = 0;
-    int point = 1;
-    int index = -1;
-    int is = 0;
+    int RError = 0, step = 0, flag = 0, point = 1, is = 0;
     while (RError <= err) {
         if (point == 1) {
             step++;
@@ -50,26 +45,22 @@ int main() {
             break;
         }
         print_secret(enc_word);
-        
+
         printf("Введенные буквы ранее: ");
         for (int i = 0; i < strlen(check); i++) {
             printf("%c ,", check[i]);
         }
-        
+
         printf("\nВведите букву: ");
         getchar();
         symbol = getchar();
-        
+
         if ((flag = correct_symbol(symbol)) == -1) {
             point = 0;
-            //printf("\nВы ввели неккоректную букву!Попробуйте снова!(enter)\n");
-            //getchar();
             continue;
         } else {
-            if ((flag = check_symbol(symbol, check, index)) == -1) {
+            if ((flag = check_symbol(symbol, check)) == -1) {
                 point = 0;
-                //printf("\nЭта буква уже была!Попробуйте снова!(enter)\n");
-                //getchar();
                 continue;
             }
         }
