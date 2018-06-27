@@ -1,25 +1,30 @@
-OBJ = 
-flags = -Wall -Werror -std=c99
+CC = gcc
+CFLAGS = -Wall
 
-.PHONY: clean open
+all: bin build build/src/ bin/exe
 
-./bin/go: ./build/main.o ./build/func.o ./build/reit.o bin test
-	gcc $(flags) -o ./bin/go  ./build/main.o ./build/func.o ./build/reit.o
+bin/exe: build/src/reit.o build/src/main.o  build/src/func.o 
+	$(CC) $(CFLAGS) build/src/reit.o build/src/main.o build/src/func.o -o bin/exe
 
-./build/main.o: ./src/main.c ./src/func.h build
-	gcc $(flags) -o build/main.o -c src/main.c
+build/src/main.o: src/main.c
+	$(CC) $(CFLAGS) -c src/main.c -o build/src/main.o 
 
-./build/func.o: ./src/func.c ./src/func.h build
-	gcc $(flags) -o ./build/func.o -c ./src/func.c
+build/src/reit.o: src/reit.c
+	$(CC) $(CFLAGS) -c src/reit.c -o build/src/reit.o 
 
-./build/reit.o: ./src/reit.c ./src/reithed.h build
-	gcc $(flags) -o ./build/reit.o -c ./src/reit.c
+build/src/func.o: src/func.c
+	$(CC) $(CFLAGS) -c src/func.c -o build/src/func.o
 
-build:
-	mkdir build
 bin:
 	mkdir bin
+	
+build:
+	mkdir build
+
+build/src/:
+	mkdir build/src
+
+.PHONY: clean
 clean:
-	rm -rf build bin
-open:
-	./bin/go
+	rm -rf build/src/*.o
+	rm -rf build/src
