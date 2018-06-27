@@ -21,8 +21,8 @@ build/src/func.o: src/func.c
 bin/test: ./build/src/reit.o ./build/src/func.o ./build/src/main_test.o bin
 	$(CC) $(CFLAGS) ./build/src/main_test.o ./build/src/func.o ./build/src/reit.o -o bin/test
 
-./build/src/main_test.o: ./test/main.c ./thirdparty/ctest.h ./src/reithed.h ./src/func.h build
-	$(CC) $(CFLAGS) -I thirdparty -I src -c ./test/main.c ./build/src/main_test.o
+./build/src/main_test.o: ./test/main.c ./thirdparty/ctest.h ./src/reithed.h ./src/func.h
+	$(CC) $(CFLAGS) -I thirdparty -I src -c ./test/main.c -o ./build/src/main_test.o
 
 bin:
 	mkdir bin
