@@ -16,11 +16,10 @@ int main() {
     }
     printf("Введите ваше имя(1-8 символов): ");
     scanf("%s", nick);
-    while (rating(nick, 'L') == -1) {
+    while (rating(nick, 'F') == -1) {//додел тут
         printf("\nНик должен быть не более 8 символов, попробуйте еще раз:");
         scanf("%s", nick);
     }
-
     printf("Enter level(1 - easy(8 err), 2 - hard(5 err): ");
     while (err == 0) {
         scanf("%d", &lev);

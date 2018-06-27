@@ -1,10 +1,10 @@
 #define CTEST_MAIN
 
-#include "func.h"
-#include "reithed.h"
-#include "ctest.h"
+#include <func.h>
+#include <reithed.h>
+#include <ctest.h>
 
-CTEST(Reterned_prow, Correct_data){
+CTEST(Returned_prow, Correct_data){
     users arr[10];
     char sym[10] = {"src"};
     arr[1].num = 4;
@@ -14,7 +14,7 @@ CTEST(Reterned_prow, Correct_data){
     ASSERT_EQUAL(exp,res);
 }
 
-CTEST(Reterned_prow, Incorrect_data){
+CTEST(Returned_prow, Incorrect_data){
     users arr[20];
     char sym[10] = {"tststs12"};
     char n[10] = {"zzzzz"};
@@ -66,21 +66,21 @@ CTEST(Encryption, Correct_data){
 }
 
 
-CTEST(Reterned_level, Correct_Retrned1) {
+CTEST(Returned_level, Correct_Retrned1) {
     int lev = 1;
     const int res = level(lev);
     const int exp = 7;
     ASSERT_EQUAL(exp, res);
 }
 
-CTEST(Reterned_level, Correct_Retrned2) {
+CTEST(Returned_level, Correct_Retrned2) {
     int lev = 2;
     const int res = level(lev);
     const int exp = 5;
     ASSERT_EQUAL(exp, res);
 }
 
-CTEST(Reterned_correct_symbol, Correct_data) {
+CTEST(Returned_correct_symbol, Correct_data) {
     char test = 'a';
     const int exp = 0;
     int res = -1;
@@ -92,14 +92,14 @@ CTEST(Reterned_correct_symbol, Correct_data) {
     
 }
 
-CTEST(Reterned_correct_symbol, Incorrect_data) {
+CTEST(Returned_correct_symbol, Incorrect_data) {
     char sym = '1';
     const int res = correct_symbol(sym);
     const int exp = -1;
     ASSERT_EQUAL(exp, res);
 }
 
-CTEST(Reterned_reg, test_retern) {
+CTEST(Returned_reg, test_retern) {
     char a = 'A';
     char b = 'a';
     int exp = (int)b;
@@ -107,7 +107,7 @@ CTEST(Reterned_reg, test_retern) {
     ASSERT_EQUAL(exp, res);
 }
 
-CTEST(Reterned_proverka, retern_true) {
+CTEST(Returned_proverka, retern_true) {
     char a[10] = {"abv"};
     char b[10] = {"abv"};
     const int exp = 0;
@@ -115,7 +115,7 @@ CTEST(Reterned_proverka, retern_true) {
     ASSERT_EQUAL(exp,res);
 }
 
-CTEST(Reterned_proverka, retern_false) {
+CTEST(Returned_proverka, retern_false) {
     char a[10] = {"abv"};
     char b[10] = {"ab"};
     const int exp = -1;
@@ -123,7 +123,7 @@ CTEST(Reterned_proverka, retern_false) {
     ASSERT_EQUAL(exp,res);
 }
 
-CTEST(Reterned_compare_s, retern_true) {
+CTEST(Returned_compare_s, retern_true) {
     char s = 's';
     char word[10] = {"slovo"};
     char enc_word[10] = {"*****"};
@@ -132,7 +132,7 @@ CTEST(Reterned_compare_s, retern_true) {
     ASSERT_EQUAL(exp, res);
 }
 
-CTEST(Reterned_compare_s, retern_false) {
+CTEST(Returned_compare_s, retern_false) {
     char s = 'd';
     char word[10] = {"slovo"};
     char enc_word[10] = {"*****"};
@@ -141,13 +141,13 @@ CTEST(Reterned_compare_s, retern_false) {
     ASSERT_EQUAL(exp, res);
 }
 
-
-
-//CTEST(Reterned_check_symbol, retern_true) {
-    //char check[16] = {"abcde"}
-    
-    //check_symbol(sym, check, ind);
-//}
+CTEST(Reterned_check_symbol, retern_true) {
+    char check[16] = {"abcdefs"};
+    char sym = 's';
+    const int exp = -1;
+    int res = check_symbol(sym, check);
+    ASSERT_EQUAL(exp, res);
+}
 
 int main(int argc, const char** argv)
 {

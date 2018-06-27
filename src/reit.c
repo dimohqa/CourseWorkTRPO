@@ -173,9 +173,8 @@ void nousl (int size, users *mmr, char *nick) {//добавляет имя в к
 
 
 int rating (char *nick, char sim_w_l) {
-    if (strlen(nick)>8) {
-        printf("Nickname > 8!!!");
-        return -1;
+    if (sim_w_l == 'F') {
+        goto metka;//k -1;
     }
     users mmr[20];
     users tmp;
@@ -240,4 +239,10 @@ int rating (char *nick, char sim_w_l) {
         printf("Ничего страшного, посмотрите в следующий раз ;-)\n");
     }
     return 0;
+    metka : 
+    if (strlen(nick)>8) {
+        return -1;
+    }else {
+        return 0;
+    }
 }
