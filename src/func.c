@@ -45,7 +45,7 @@ int level(int lev) {
         err = 5;
         return err;
     }
-    if (lev != 1 && lev != 2) {
+    if ((int)lev != 1 && (int)lev != 2) {
         printf("Incorrect level!\nEnter level:");
     }
     return 0;

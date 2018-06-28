@@ -7,11 +7,10 @@ int main() {
     char word[20], enc_word[20], help[100];
     char nick[9];
     char check[20];
-    int err = 0, lev = 0;
-    int symbol;
+    int err = 0, lev = 0, symbol;
     FILE *fp = fopen("words.txt","r");
     if (fp == NULL) {
-        printf("Error read file");
+        printf("Ошибка чтения файла");
         return 1;
     }
     printf("Введите ваше имя(1-8 символов): ");
@@ -20,7 +19,7 @@ int main() {
         printf("\nНик должен быть не более 8 символов, попробуйте еще раз:");
         scanf("%s", nick);
     }
-    printf("Enter level(1 - easy(8 err), 2 - hard(5 err): ");
+    printf("Введите уровень(1 - легкий(8 ошибок), 2 - сложный(5 ошибок): ");
     while (err == 0) {
         scanf("%d", &lev);
         err = level(lev);
@@ -34,7 +33,7 @@ int main() {
             step++;
         }
         system("clear");
-        printf("\t\t\t\t\t\t\t\t\t\t|| Level: %d || Error: %d || Step: %d ||\n", lev, RError, step);
+        printf("\t\t\t\t\t\t\t\t\t\t|| Уровень: %d || Ошибок: %d || Шагов: %d ||\n", lev, RError, step);
         print_hang(err, RError);
         if (RError == err) {
             printf("\nК сожалению вы проиграли!!!\n");
