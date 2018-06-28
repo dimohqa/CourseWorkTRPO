@@ -52,14 +52,16 @@ int level(int lev) {
 }
 
 void encryption(char word[], char enc_word[]) {
+    int i = 0;
     int length = strlen(word);
-    for (int i = 0; i < length; i++) {
+    for (i = 0; i < length; i++) {
         enc_word[i] = '*';
         enc_word[length] = '\0';
     }
 }
 
 void randomize(FILE *fp, char *word, char *help) {
+    int i = 0;
     srand(time(NULL));
     int rnd, f = 0;
     while (fscanf(fp, "%s" "%s", word , help) != EOF ) {
@@ -67,15 +69,16 @@ void randomize(FILE *fp, char *word, char *help) {
     }
     rnd = rand() % f;
     fseek(fp, 0, SEEK_SET);
-    for (int i = 0;i < rnd; i++) {
+    for (i = 0;i < rnd; i++) {
         fscanf(fp, "%s" "%s", word, help);
     }
 }
 
 int compare_s(char symbol, char word[], char enc_word[]) {
+    int i = 0;
     int len = strlen(word);
     int flag = -1;
-    for (int i = 0; i < len; i++) {
+    for (i = 0; i < len; i++) {
         if (word[i] == symbol) {
             enc_word[i] = word[i];
             flag = 0;
@@ -85,18 +88,20 @@ int compare_s(char symbol, char word[], char enc_word[]) {
 }
 
 void print_secret(char enc_word[]) {
+    int i = 0;
     int len = strlen(enc_word);
     printf("\nСекретное слово: ");
-    for (int i = 0; i < len; i++) {
+    for (i = 0; i < len; i++) {
         printf("%c  ", enc_word[i]);
     }
     printf("\n");
 }
 
 int check_symbol(char symbol, char check[]) {
+    int i = 0;
     int flag = 0;
     int k = strlen(check);
-    for (int i = 0; i < strlen(check); i++) {
+    for (i = 0; i < strlen(check); i++) {
         if (symbol == check[i]) {
             flag = -1;
         }
@@ -123,8 +128,9 @@ char reg(char symbol) {
 }
 
 int proverka(char word[], char enc_word[]) {
+    int i = 0;
     int flag = 0;
-    for (int i = 0; i < strlen(word); i++) {
+    for (i = 0; i < strlen(word); i++) {
         if (word[i] == enc_word[i]) {
             flag++;
         }
