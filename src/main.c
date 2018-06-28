@@ -8,6 +8,7 @@ int main() {
     char nick[9];
     char check[20];
     int err = 0, lev = 0, symbol;
+    system("clear");
     FILE *fp = fopen("words.txt","r");
     if (fp == NULL) {
         printf("Ошибка чтения файла");
@@ -29,11 +30,11 @@ int main() {
     fclose(fp);
     int RError = 0, step = 0, flag = 0, point = 1, is = 0;
     while (RError <= err) {
+        system("clear");
+        printf("\t\t\t\t\t\t\t\t\t\t|| Уровень: %d || Ошибок: %d || Шагов: %d ||\n", lev, RError, step - 1);
         if (point == 1) {
             step++;
         }
-        system("clear");
-        printf("\t\t\t\t\t\t\t\t\t\t|| Уровень: %d || Ошибок: %d || Шагов: %d ||\n", lev, RError, step);
         print_hang(err, RError);
         if (RError == err) {
             printf("\nК сожалению вы проиграли!!!\n");
@@ -72,7 +73,10 @@ int main() {
         if ((flag = compare_s(symbol, word, enc_word)) == -1) {
             printf("\nТакой буквы нет!");
             RError++;
+            step++;
+            continue;
         }
+        step++;
     }
     if (is == 0) {
         rating(nick, 'L');
