@@ -1,0 +1,5 @@
+1|Dimohqa |1|0
+2|LOL     |1|0
+3|DIMA    |2|1
+4|Aleksey |1|1
+5|Ivan    |1|1
