@@ -4,6 +4,7 @@
 #include "reithed.h"
 
 int main() {
+    int i = 0;
     char word[20], enc_word[20], help[100];
     char nick[9];
     char check[20];
@@ -50,7 +51,7 @@ int main() {
         print_secret(enc_word);
 
         printf("Введенные буквы ранее: ");
-        for (int i = 0; i < strlen(check); i++) {
+        for (i = 0; i < strlen(check); i++) {
             printf("%c ,", check[i]);
         }
 
