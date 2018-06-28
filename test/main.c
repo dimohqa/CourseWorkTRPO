@@ -82,9 +82,10 @@ CTEST(Returned_level, Correct_Retrned2) {
 
 CTEST(Returned_correct_symbol, Correct_data) {
     char test = 'a';
+    int i = 0;
     const int exp = 0;
     int res = -1;
-    for (int i = 0; i<26; i++) {
+    for (i = 0; i<26; i++) {
         res = correct_symbol(test);
         test++;
         ASSERT_EQUAL(exp, res);
